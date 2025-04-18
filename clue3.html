@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Woordzoeker – Detective Jesse</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+      }
+
+      header {
+        background-color: #43a047;
+        color: white;
+        padding: 3rem 1rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      .riddle-box {
+        background-color: #fff9c4;
+        border-left: 6px solid #43a047;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        text-transform: uppercase;
+      }
+
+      button {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      .hint {
+        display: none;
+        background-color: #f9fbe7;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🕵️‍♂️</span> Woordzoeker – Detective Jesse
+        <span class="emoji">🔎</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <p>Goed gedaan, speurneus!</p>
+      <p>
+        De Schaduwpoot is slim, maar jij bent slimmer. Hij heeft zijn volgende
+        aanwijzing verstopt in een reeks woorden die je eerst moet vinden...
+      </p>
+
+      <img src="woordzoeker.png" alt="Woordzoeker puzzel" />
+
+      <div class="riddle-box">
+        <p>
+          Vul de 5 verborgen woorden hieronder in. Ze kunnen in willekeurige
+          volgorde worden ingevuld.<br />
+          Als je ze allemaal goed hebt, laat de Schaduwpoot weer iets achter...
+        </p>
+
+        <input type="text" id="input1" placeholder="Woord 1" />
+        <input type="text" id="input2" placeholder="Woord 2" />
+        <input type="text" id="input3" placeholder="Woord 3" />
+        <input type="text" id="input4" placeholder="Woord 4" />
+        <input type="text" id="input5" placeholder="Woord 5" />
+
+        <button onclick="checkAnswers()">Controleer</button>
+
+        <div class="hint" id="clue">
+          🔧 Goed gedaan! De Schaduwpoot liet iets vallen in de
+          <strong>gereedschapskist in de schuur</strong>. Ga snel kijken!
+        </div>
+      </div>
+
+      <footer>
+        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+      </footer>
+    </div>
+
+    <script>
+      function checkAnswers() {
+        const correctWords = [
+          "wasmachine",
+          "wasdroger",
+          "wasrek",
+          "fiets",
+          "stellingkast",
+        ];
+        const inputs = [
+          document.getElementById("input1").value.trim().toLowerCase(),
+          document.getElementById("input2").value.trim().toLowerCase(),
+          document.getElementById("input3").value.trim().toLowerCase(),
+          document.getElementById("input4").value.trim().toLowerCase(),
+          document.getElementById("input5").value.trim().toLowerCase(),
+        ];
+
+        const allEntered = inputs.every((val) => val.length > 0);
+        if (!allEntered) return alert("Vul alle vijf de velden in!");
+
+        const matchedWords = correctWords.filter((word) =>
+          inputs.includes(word)
+        );
+
+        if (matchedWords.length === 5) {
+          document.getElementById("clue").style.display = "block";
+        } else {
+          alert("Hmm... dat zijn niet de juiste woorden. Probeer het opnieuw!");
+        }
+      }
+    </script>
+  </body>
+</html>
