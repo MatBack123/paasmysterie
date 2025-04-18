@@ -107,7 +107,7 @@
   <body>
     <header>
       <h1>
-        <span class="emoji">🧠</span> Paas Memory
+        <span class="emoji">🧠</span> Paas Memory – Jesse
         <span class="emoji">🐰</span>
       </h1>
     </header>
@@ -158,7 +158,7 @@
         lockBoard = false,
         matches = 0;
       let countdown,
-        timeLeft = 180;
+        timeLeft = 240; // <- Updated to 240 seconds (4 minutes)
       const board = document.getElementById("board");
       const message = document.getElementById("message");
       const timerDisplay = document.getElementById("timer");
@@ -170,7 +170,7 @@
         lockBoard = false;
         firstCard = null;
         secondCard = null;
-        timeLeft = 180;
+        timeLeft = 240;
 
         let cards = [...emojis, ...emojis];
         cards.sort(() => 0.5 - Math.random());
@@ -193,7 +193,7 @@
           if (timeLeft <= 0) {
             clearInterval(countdown);
             message.textContent = "⏰ Tijd is op! Het spel begint opnieuw...";
-            setTimeout(startGame, 4000);
+            setTimeout(startGame, 3000);
           }
         }, 1000);
       }
