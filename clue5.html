@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paas Memory – Detective Jesse</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+        text-align: center;
+      }
+
+      header {
+        background-color: #43a047;
+        color: white;
+        padding: 3rem 1rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      .game-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 12px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .card {
+        width: 70px;
+        height: 70px;
+        background-color: #daaa00;
+        color: white;
+        font-size: 1.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+      }
+
+      .card.revealed {
+        background-color: #fef2c0;
+        color: #333;
+        cursor: default;
+      }
+
+      .message {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #228b22;
+        font-size: 1.2em;
+      }
+
+      .timer {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #b22222;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🧠</span> Paas Memory – Jesse
+        <span class="emoji">🐰</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <p>De Schaduwpoot heeft zijn geheugen getest. Kun jij het beter?</p>
+      <p>Zoek alle 16 paaspaar-kaartjes binnen de tijd!</p>
+
+      <div class="timer" id="timer">Tijd: 3:00</div>
+      <div class="game-board" id="board"></div>
+      <div class="message" id="message"></div>
+
+      <footer>
+        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+      </footer>
+    </div>
+
+    <script>
+      const emojis = [
+        "🥚",
+        "🐰",
+        "🐣",
+        "🌷",
+        "🥕",
+        "🐥",
+        "🍫",
+        "🧺",
+        "🌸",
+        "🐇",
+        "🍭",
+        "🌼",
+        "🧁",
+        "🍪",
+        "☀️",
+        "🐓",
+      ];
+
+      let firstCard,
+        secondCard,
+        lockBoard = false,
+        matches = 0;
+      let countdown,
+        timeLeft = 180;
+      const board = document.getElementById("board");
+      const message = document.getElementById("message");
+      const timerDisplay = document.getElementById("timer");
+
+      function startGame() {
+        board.innerHTML = "";
+        message.textContent = "";
+        matches = 0;
+        lockBoard = false;
+        firstCard = null;
+        secondCard = null;
+        timeLeft = 180;
+
+        let cards = [...emojis, ...emojis];
+        cards.sort(() => 0.5 - Math.random());
+
+        cards.forEach((emoji, index) => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.dataset.emoji = emoji;
+          card.dataset.index = index;
+          card.textContent = "";
+          card.addEventListener("click", handleCardClick);
+          board.appendChild(card);
+        });
+
+        clearInterval(countdown);
+        updateTimerDisplay();
+        countdown = setInterval(() => {
+          timeLeft--;
+          updateTimerDisplay();
+          if (timeLeft <= 0) {
+            clearInterval(countdown);
+            message.textContent = "⏰ Tijd is op! Het spel begint opnieuw...";
+            setTimeout(startGame, 3000);
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const min = Math.floor(timeLeft / 60);
+        const sec = String(timeLeft % 60).padStart(2, "0");
+        timerDisplay.textContent = `Tijd: ${min}:${sec}`;
+      }
+
+      function handleCardClick(e) {
+        const card = e.target;
+        if (lockBoard || card.classList.contains("revealed")) return;
+
+        card.textContent = card.dataset.emoji;
+        card.classList.add("revealed");
+
+        if (!firstCard) {
+          firstCard = card;
+        } else {
+          secondCard = card;
+          lockBoard = true;
+
+          if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            firstCard = null;
+            secondCard = null;
+            lockBoard = false;
+            matches++;
+            if (matches === emojis.length) {
+              clearInterval(countdown);
+              message.textContent =
+                "🎉 Fantastisch Jesse! Alle paren gevonden. De volgende aanwijzing is: 🧺 In de mand onder de tafel!";
+            }
+          } else {
+            setTimeout(() => {
+              firstCard.textContent = "";
+              secondCard.textContent = "";
+              firstCard.classList.remove("revealed");
+              secondCard.classList.remove("revealed");
+              firstCard = null;
+              secondCard = null;
+              lockBoard = false;
+            }, 1000);
+          }
+        }
+      }
+
+      startGame();
+    </script>
+  </body>
+</html>
