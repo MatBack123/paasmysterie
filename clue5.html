@@ -50,23 +50,23 @@
 
       .game-board {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 6px;
         justify-content: center;
         margin-top: 30px;
       }
 
       .card {
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         background-color: #daaa00;
         color: white;
-        font-size: 1.8em;
+        font-size: 1.4em;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 8px;
         transition: background-color 0.3s;
       }
 
@@ -114,7 +114,7 @@
 
     <div class="container">
       <p>De Schaduwpoot heeft zijn geheugen getest. Kun jij het beter?</p>
-      <p>Zoek alle 16 paaspaar-kaartjes binnen de tijd!</p>
+      <p>Zoek alle 24 paaspaar-kaartjes binnen de tijd!</p>
 
       <div class="timer" id="timer">Tijd: 3:00</div>
       <div class="game-board" id="board"></div>
@@ -143,7 +143,15 @@
         "🍪",
         "☀️",
         "🐓",
-      ];
+        "🐦",
+        "🐝",
+        "🍓",
+        "🌻",
+        "🌈",
+        "🪺",
+        "🍬",
+        "🐾",
+      ]; // 24 unieke emoji's
 
       let firstCard,
         secondCard,
