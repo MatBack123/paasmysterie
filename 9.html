@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clue 6 – De Kluis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+      }
+
+      header {
+        background-color: #43a047;
+        color: white;
+        padding: 3rem 1rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      .safe-box {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .display {
+        background-color: #000;
+        color: #0f0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 2rem;
+        letter-spacing: 8px;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        user-select: none;
+      }
+
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 1rem;
+      }
+
+      .keypad button {
+        font-size: 1.5rem;
+        padding: 0.8rem 0;
+        background-color: #f1f8e9;
+        color: #2c2c2c;
+        border-radius: 6px;
+        border: 1px solid #a5d6a7;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .keypad button:hover {
+        background-color: #c8e6c9;
+      }
+
+      #unlock {
+        width: 100%;
+        background-color: #43a047;
+        color: white;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      #unlock:hover {
+        background-color: #388e3c;
+      }
+
+      .success-message {
+        margin-top: 1rem;
+        background: #dcedc8;
+        color: #2e7d32;
+        padding: 1rem;
+        border-radius: 8px;
+        font-weight: bold;
+        display: none;
+      }
+
+      .riddle-box {
+        background-color: #fff9c4;
+        border-left: 6px solid #43a047;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      input[type="text"] {
+        padding: 8px;
+        font-size: 1em;
+        width: 80px;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+
+      button {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px 5px 0 0;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      .hint {
+        display: none;
+        background-color: #f9fbe7;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 10px;
+        font-style: italic;
+      }
+
+      .code-display {
+        font-weight: bold;
+        color: #2e7d32;
+        margin-top: 0.5rem;
+      }
+
+      .divider {
+        font-weight: 600;
+        margin: 2.5rem 0 1rem;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🔐</span> De Kluis <span class="emoji">🧠</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <p>
+        De spanning stijgt... Er is een sterk vermoeden dat Schaduwpoot het
+        grote groene paasei 🥚💚 in deze mysterieuze digitale kluis heeft
+        gestopt. Alleen wie slim genoeg is om de juiste
+        <strong>9-cijferige code</strong> te kraken, zal ontdekken wat erin
+        zit...
+      </p>
+
+      <p>
+        Los elk raadsel op om een 3-cijferige code te verdienen. Heb je alle
+        drie de codes gevonden? Voer dan de <strong>9 cijfers</strong> in op het
+        kluispaneel om hem te openen. Maar wees gewaarschuwd... wie weet wat
+        Schaduwpoot nog meer achterliet. 💥
+      </p>
+
+      <!-- Kluis -->
+      <div class="safe-box">
+        <div class="display" id="codeDisplay">─────────</div>
+
+        <div class="keypad">
+          <button onclick="press(1)">1</button>
+          <button onclick="press(2)">2</button>
+          <button onclick="press(3)">3</button>
+          <button onclick="press(4)">4</button>
+          <button onclick="press(5)">5</button>
+          <button onclick="press(6)">6</button>
+          <button onclick="press(7)">7</button>
+          <button onclick="press(8)">8</button>
+          <button onclick="press(9)">9</button>
+          <button onclick="backspace()">⌫</button>
+          <button onclick="press(0)">0</button>
+          <button disabled></button>
+        </div>
+
+        <button id="unlock" onclick="unlock()">Ontgrendel</button>
+
+        <div class="success-message" id="successMsg">
+          🥳 Goed gedaan!<br />
+          De kluis is open!<br />
+          📍 Kijk in de oven... maar wees voorzichtig! 🔥
+        </div>
+      </div>
+
+      <div class="divider">🧩 Los de raadsels op om de code te vinden:</div>
+
+      <!-- Raadsels -->
+      <div class="riddle-box">
+        <p>
+          <strong>Raadsel 1:</strong><br />
+          Ik ben een getal. Als je mij verdubbelt en er dan 3 bij optelt, krijg
+          je 17. Wat ben ik?
+        </p>
+        <input type="text" id="r1" />
+        <button onclick="checkRiddle(1)">Check</button>
+        <button onclick="toggleHint(1)">Hint 🧠</button>
+        <div class="hint" id="hint1">Probeer: 2 × ? + 3 = 17</div>
+        <div class="code-display" id="code1"></div>
+      </div>
+
+      <div class="riddle-box">
+        <p>
+          <strong>Raadsel 2:</strong><br />
+          Welke getal komt als volgende in deze reeks? 1, 1, 2, 3, 5, 8, 13, ?
+        </p>
+        <input type="text" id="r2" />
+        <button onclick="checkRiddle(2)">Check</button>
+        <button onclick="toggleHint(2)">Hint 🔢</button>
+        <div class="hint" id="hint2">
+          Fibonacci… Elk getal is de som van de twee ervoor.
+        </div>
+        <div class="code-display" id="code2"></div>
+      </div>
+
+      <div class="riddle-box">
+        <p>
+          <strong>Raadsel 3:</strong><br />
+          Je hebt één lucifer. Je komt een donkere kamer binnen met: een kaars,
+          een olielamp en een kachel. Wat steek je eerst aan?
+        </p>
+        <input type="text" id="r3" />
+        <button onclick="checkRiddle(3)">Check</button>
+        <button onclick="toggleHint(3)">Hint 🔥</button>
+        <div class="hint" id="hint3">
+          Je kunt niets aansteken zonder dit als eerste te doen.
+        </div>
+        <div class="code-display" id="code3"></div>
+      </div>
+
+      <footer>
+        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+      </footer>
+    </div>
+
+    <script>
+      const correctAnswers = {
+        1: { answer: "7", code: "017" },
+        2: { answer: "21", code: "138" },
+        3: { answer: "lucifer", code: "021" },
+      };
+
+      const foundCodes = { 1: null, 2: null, 3: null };
+      let enteredCode = "";
+
+      function checkRiddle(nr) {
+        const input = document
+          .getElementById(`r${nr}`)
+          .value.trim()
+          .toLowerCase();
+        const correct = correctAnswers[nr].answer;
+        const display = document.getElementById(`code${nr}`);
+
+        if (input === correct) {
+          foundCodes[nr] = correctAnswers[nr].code;
+          display.innerText = `✅ Code: ${foundCodes[nr]}`;
+        } else {
+          display.innerText = `❌ Dat is niet juist.`;
+        }
+      }
+
+      function toggleHint(nr) {
+        const hint = document.getElementById(`hint${nr}`);
+        hint.style.display = hint.style.display === "block" ? "none" : "block";
+      }
+
+      function updateDisplay() {
+        const display = document.getElementById("codeDisplay");
+        display.textContent =
+          enteredCode.length > 0 ? enteredCode.padEnd(9, "─") : "─────────";
+      }
+
+      function press(num) {
+        if (enteredCode.length < 9) {
+          enteredCode += num.toString();
+          updateDisplay();
+        }
+      }
+
+      function backspace() {
+        enteredCode = enteredCode.slice(0, -1);
+        updateDisplay();
+      }
+
+      function unlock() {
+        const correctCode =
+          (foundCodes[1] || "") + (foundCodes[2] || "") + (foundCodes[3] || "");
+
+        if (enteredCode.length !== 9) {
+          alert("⏳ De code moet 9 cijfers lang zijn.");
+          return;
+        }
+
+        if (enteredCode === correctCode) {
+          document.getElementById("successMsg").style.display = "block";
+        } else {
+          alert(
+            "❌ De kluis blijft dicht. Controleer je invoer en of je alle raadsels goed hebt!"
+          );
+        }
+      }
+
+      updateDisplay();
+    </script>
+  </body>
+</html>
