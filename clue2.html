@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Volgende Uitdaging, Detective Jesse</title>
+    <title>Clue 2 – Schuifpuzzel van Schaduwpoot</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
       rel="stylesheet"
@@ -24,14 +24,14 @@
       header {
         background-color: #43a047;
         color: white;
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem;
         text-align: center;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         border-bottom: 5px solid #388e3c;
       }
 
       header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 600;
         margin: 0;
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
@@ -39,7 +39,7 @@
       }
 
       .emoji {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         vertical-align: middle;
       }
 
@@ -147,14 +147,20 @@
   <body>
     <header>
       <h1>
-        <span class="emoji">🕵️‍♂️</span> Volgende Uitdaging, Detective Jesse
-        <span class="emoji">🧩</span>
+        <span class="emoji">🧩</span> Clue 2 – Schuifpuzzel van Schaduwpoot
+        <span class="emoji">🕵️‍♂️</span>
       </h1>
     </header>
 
     <div class="container">
-      <p>Goed gedaan, detective!</p>
-      <p>De Schaduwpoot heeft zijn volgende aanwijzing goed verstopt...</p>
+      <p>
+        Jesse, je bent Schaduwpoot op het spoor... maar deze sluwe schurk heeft
+        een puzzel achtergelaten om je af te leiden.
+      </p>
+      <p>
+        Los de schuifpuzzel hieronder op. Alleen als het plaatje weer klopt,
+        ontdek je de volgende hint!
+      </p>
 
       <div id="board" class="grid"></div>
 
@@ -169,11 +175,11 @@
           <p>Psst... kijk onder de glijbaan 🛝</p>
         </div>
       </div>
-
-      <footer>
-        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
-      </footer>
     </div>
+
+    <footer>
+      <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+    </footer>
 
     <script>
       const columns = 3;
