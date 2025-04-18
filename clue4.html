@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoek de Verschillen – Detective Jesse</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+      }
+
+      header {
+        background-color: #43a047;
+        color: white;
+        padding: 3rem 1rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      .riddle-box {
+        background-color: #fff9c4;
+        border-left: 6px solid #43a047;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      input[type="number"] {
+        padding: 10px;
+        font-size: 1rem;
+        width: 100px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        text-align: center;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      button {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      .hint {
+        display: none;
+        background-color: #f9fbe7;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .error {
+        color: red;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+
+      img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🕵️‍♂️</span> Zoek de Verschillen
+        <span class="emoji">🔍</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <p>De Schaduwpoot laat niets aan het toeval over...</p>
+      <p>Alleen een scherpe speurneus ziet wat er anders is.</p>
+
+      <img src="verschillen.png" alt="Zoek de verschillen afbeelding" />
+
+      <div class="riddle-box">
+        <p>
+          Hoeveel verschillen kun jij vinden tussen de twee tekeningen?<br />
+          Vul het juiste aantal in en klik op de knop om verder te gaan.
+        </p>
+
+        <input type="number" id="aantal" min="1" max="20" />
+        <button onclick="checkAantal()">Controleer</button>
+
+        <p class="error" id="error" style="display: none">
+          Dat is niet het juiste aantal. Probeer opnieuw!
+        </p>
+
+        <div class="hint" id="clue">
+          🎁 Goed gedaan, Jesse! De volgende aanwijzing is:
+          <strong>het is rond en vierkant tegelijk</strong>...
+        </div>
+      </div>
+
+      <footer>
+        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+      </footer>
+    </div>
+
+    <script>
+      function checkAantal() {
+        const input = document.getElementById("aantal").value;
+        const clue = document.getElementById("clue");
+        const error = document.getElementById("error");
+
+        if (parseInt(input) === 10) {
+          clue.style.display = "block";
+          error.style.display = "none";
+        } else {
+          clue.style.display = "none";
+          error.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
