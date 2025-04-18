@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raadsel #2</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+      }
+
+      header {
+        background-color: #43a047;
+        color: white;
+        padding: 3rem 1rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      .riddle-box {
+        background-color: #fff9c4;
+        border-left: 6px solid #43a047;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin: 20px 0 0 0;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      .hint {
+        display: none;
+        background-color: #f9fbe7;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 10px;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🕵️‍♂️</span> Raadsel #2
+        <span class="emoji">🧸</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <p>Goed gedaan, detective!</p>
+      <p>De Schaduwpoot heeft zijn volgende aanwijzing goed verstopt...</p>
+
+      <div class="riddle-box">
+        <p>
+          Ik ben een plek waar het zacht is en veilig,<br />
+          vol vriendjes van stof, groot en klein.
+        </p>
+
+        <button
+          onclick="document.getElementById('hint').style.display = 'block'"
+        >
+          Bekijk Hint
+        </button>
+
+        <div class="hint" id="hint">
+          <p>
+            Hint: Denk aan waar je je favoriete vriendjes veilig en netjes
+            bewaart!
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <span class="emoji">🐣</span> Kun jij het volgende paasei vinden...?
+      </footer>
+    </div>
+  </body>
+</html>
