@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geheime Melding – Alleen voor Detective Jesse</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Raleway", sans-serif;
+        background-color: #f0f8f4;
+        color: #2c2c2c;
+      }
+
+      header {
+        background-color: #43a047; /* Groene kleur voor de header */
+        color: white;
+        padding: 4rem 1rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-bottom: 5px solid #388e3c; /* Onderste rand voor meer diepte */
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem; /* Grotere fontgrootte */
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Schaduweffect voor de tekst */
+      }
+
+      header .emoji {
+        font-size: 2.2rem; /* Grotere emoji's voor meer impact */
+        vertical-align: middle;
+        margin: 0 0.5rem;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 2rem 1rem;
+      }
+
+      section {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      section:hover {
+        transform: scale(1.01);
+      }
+
+      section h2 {
+        color: #2e7d32;
+        font-size: 1.5rem;
+        margin-top: 0;
+      }
+
+      .emoji {
+        font-size: 1.3rem;
+        vertical-align: middle;
+      }
+
+      .highlight {
+        background-color: #fff9c4; /* Geel voor de aanwijzing en hint */
+        padding: 20px 25px;
+        border-left: 6px solid #43a047;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 1rem; /* Nu dezelfde lettergrootte als de andere secties */
+      }
+
+      .highlight h3 {
+        font-size: 1.6rem;
+        color: #2e7d32;
+        margin-bottom: 10px;
+      }
+
+      .highlight p {
+        font-size: 1rem; /* Zelfde lettergrootte als de rest van de tekst */
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .highlight strong {
+        font-weight: 600;
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        vertical-align: middle;
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .image-container img {
+        max-width: 80%;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      #hint-container {
+        display: none;
+        font-size: 1rem;
+        background-color: #f9fbe7;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      #hint-button {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      #hint-button:hover {
+        background-color: #388e3c;
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .highlight {
+          padding: 15px;
+        }
+        .image-container img {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span class="emoji">🕵️‍♂️</span> Geheime Melding – Detective Jesse
+        <span class="emoji">🐣</span>
+      </h1>
+    </header>
+
+    <div class="container">
+      <section>
+        <h2><span class="emoji">📜</span> Het Paasdrama</h2>
+        <p><strong>Op Paasochtend is er iets vreselijks gebeurd...</strong></p>
+        <p>
+          <span class="emoji">🥚</span>
+          <strong>Het groene Paasei van Alkmaar</strong> is spoorloos verdwenen
+          uit de streng beveiligde kluis van het Paasagentschap. Zonder dit ei
+          komt het hele feest in gevaar!
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="emoji">🎯</span> De Verdachte</h2>
+        <p>
+          Alle aanwijzingen leiden naar de beruchte
+          <strong>Schaduwpoot</strong>, een meestercrimineel die raadsels en
+          valstrikken heeft achtergelaten.
+        </p>
+        <div class="image-container">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Villainc.svg/1280px-Villainc.svg.png"
+            alt="Verdachte Schaduwpoot"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="emoji">⏱️</span> Jouw Missie</h2>
+        <p>
+          Jij, <strong>Detective Jesse</strong>, bent onze enige hoop. Vind het
+          ei voor het te laat is!
+        </p>
+        <div class="image-container">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/05/30/14/23/detective-1424831_1280.png"
+            alt="Detective Jesse"
+          />
+        </div>
+      </section>
+
+      <section class="highlight">
+        <h3><span class="emoji">🔍</span> Eerste aanwijzing:</h3>
+        <p>
+          Ga naar de plek waar elke ochtend je ontbijt wordt klaargemaakt, en de
+          geur van koffie zich verspreidt. Zoek daar naar het volgende spoor!
+        </p>
+
+        <!-- Hint Button in the same box -->
+        <button id="hint-button">Hint</button>
+
+        <!-- Hint Textbox -->
+        <div id="hint-container">
+          <p>
+            Tip: Kijk goed rond de plek waar je elke ochtend de geur van koffie
+            ruikt. Misschien vind je iets wat je helpt!
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      Gemaakt voor Jesse – hoofdinspecteur met een neus voor mysterie 🕵️
+    </footer>
+
+    <script>
+      document
+        .getElementById("hint-button")
+        .addEventListener("click", function () {
+          var hintContainer = document.getElementById("hint-container");
+          if (
+            hintContainer.style.display === "none" ||
+            hintContainer.style.display === ""
+          ) {
+            hintContainer.style.display = "block";
+          } else {
+            hintContainer.style.display = "none";
+          }
+        });
+    </script>
+  </body>
+</html>
